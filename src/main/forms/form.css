@@ -1,0 +1,28 @@
+.input-ele{
+    text-align: center;
+    border: 2px solid ;
+    width: 550px;
+    margin: auto;
+}
+.input-ele button{
+    margin-bottom: 50px;
+}
+.div-part{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+   
+    margin: auto;
+    /* border: 2px solid ; */
+}
+.sub-main{
+ height: 250px;
+    width: 300px; 
+    border: 2px solid;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#btn-part{
+    margin-right: 20px;
+}

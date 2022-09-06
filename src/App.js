@@ -1,23 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+// import Trial from './main/hooks/hooks';
+// import Form from './main/forms/form';
+import Fetch from './main/api/fetch';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Trial/>
+      <Form/> */}
+      <Fetch/>
+      {/* <Shop/> */}
+      {/* <Lifecycle/> */}
     </div>
   );
 }
