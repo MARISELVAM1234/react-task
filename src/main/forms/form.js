@@ -8,31 +8,53 @@ const Form = () => {
   const [price, setPrice] = useState(null);
   const [errorMsg, setError] = useState("");
   const [emptyArr, setArr] = useState([]);
-  // const [se, set] = useState([]);
+  const [storedArr , setStore] = useState([])
+  const [check , setCheck] = useState(false)
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (element) => {
+    element.preventDefault();
     if (errorMsg !== "") return;
-    // if((userName ,qty ,price) !=="") return ;
-    console.log(userName, qty, price);
-
-    setArr([...emptyArr, { userName, qty, price }]);
-    console.log(emptyArr);
-    // const obj = [{
-    //     name :userName ,
-    //     age : setQty
-    // }]
-    // console.log(obj);
+      setArr([...emptyArr, {id:emptyArr.length+1 , userName, qty, price }]);
+      // console.log(emptyArr)
 
     setName("")
      setQty("")
      setPrice("");
   };
 
+
+//update value
+ const update= () =>{
+  setName("")
+  setQty("")
+  setPrice("");
+  setCheck(false)
+
+  let st = storedArr
+
+  const isExit = emptyArr.some((product) =>  product.id === st.id )
+  if(isExit) {
+    let a = emptyArr.map((ele) =>{
+      if (ele.id === st.id){
+        return {
+          ...ele, userName:userName ,price:price  ,qty :qty
+        }      
+      }
+      else{
+        return {
+          ...ele
+        }
+      }
+      
+    })
+    setArr(a)
+    }
+
+ }
+
+
   const handleUserInput = (event) => {
-    console.log(event, "e");
-    // if (event.target.value === ""){
     if (event.target.name === "userName") {
       setName(event.target.value);
     }
@@ -53,48 +75,27 @@ const Form = () => {
       setPrice(event.target.value);
     }
   };
-  // else {
-  //   setError("invalid")
-  // }
-  // };
- 
+
 
   const remove = (ele) => {
-    console.log(ele, "ele");
     let removeEle = emptyArr.filter((value) => value !== ele);
-    console.log(removeEle, "re");
     setArr([...removeEle]);
   };
 
   const edit = (data) => {
-
-    // let removeValue = emptyArr.filter((value) =>(
-    //   value !== data));
-    // console.log(removeValue, "re");
-    // setArr([...removeValue]);
+    setCheck(true)
     let updateEle = emptyArr.indexOf(data)
     let val = emptyArr.at(updateEle)
-    console.log(val , "va");
-    console.log(data ,"da");
+  setStore(data)
+
     if (val === data){
     setName(data.userName)
         setQty(data.qty)
        setPrice(data.price)
     }
-    
-  //   set(
-  //     setArr.map(item => 
-  //         val === data
-  //         ? {...item, someProp : "changed"} 
-  //         : item 
-  // ))
-    //  if ( updateEle === updateEle){
-    //   console.log(updateEle);
-    //  
-    //  }
-    
-  //   if (data ===)
   };
+console.log("stored",storedArr);
+
 
   return (
     <React.Fragment>
@@ -126,7 +127,8 @@ const Form = () => {
           placeholder="Enter the price"
         ></input>
         <h2>{errorMsg}</h2>
-        <button onClick={handleSubmit}>Submit</button>
+        {!check?<button onClick={handleSubmit}>Submit</button> : <button onClick={update}>update</button>}
+        {/* <button onClick={handleSubmit}>Submit</button> */}
       </div>
       <div className="div-part">
         {emptyArr.map((ele, index) => (
